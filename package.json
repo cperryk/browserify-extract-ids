@@ -10,6 +10,10 @@
     "Browserify",
     "browserify-plugin"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cperryk/browserify-extract-ids.git"
+  },
   "author": "Chris Kirk",
   "license": "ISC",
   "dependencies": {
