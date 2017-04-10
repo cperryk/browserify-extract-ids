@@ -1,0 +1,27 @@
+{
+  "name": "browserify-extract-ids",
+  "version": "0.0.1",
+  "description": "Browserify plugin to extract a bundle's module IDs to a file or callback.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "keywords": [
+    "Browserify",
+    "browserify-plugin"
+  ],
+  "author": "Chris Kirk",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "fs-extra": "^2.1.2",
+    "through2": "^2.0.3"
+  },
+  "devDependencies": {
+    "bl": "^1.2.0",
+    "browserify": "^14.1.0",
+    "eslint": "^3.18.0",
+    "mocha": "^3.2.0",
+    "string-to-stream": "^1.1.0"
+  }
+}
