@@ -2,7 +2,6 @@
 const expect = require('chai').expect,
   fs = require('fs-extra'),
   browserify = require('browserify'),
-  bl = require('bl'),
   path = require('path'),
   lib = require('./../index');
 
@@ -21,21 +20,20 @@ describe('browserify-extract-ids', function () {
     fs.removeSync(outputFile);
   });
 
-  it ('Exports the correct ids to the specified path', function (done) {
+  it ('exports the correct ids to the specified path', function (done) {
     browserify()
       .add(entryPath)
       .plugin(lib, {outputFile: outputFile})
-      .bundle()
-      .pipe(bl((err) => {
+      .bundle((err) => {
         const ids = fs.readJsonSync(path.join(__dirname, 'out.json'));
 
         expect(err).to.be.null;
         expect(ids).to.deep.equal(expectedIds);
         done();
-      }));
+      });
   });
 
-  it ('If "callback" is defined, passes ids file as second argument to it', function (done) {
+  it ('passes ids to second argument to callback if it is defined', function (done) {
     browserify()
       .add(entryPath)
       .plugin(lib, {
@@ -43,11 +41,16 @@ describe('browserify-extract-ids', function () {
           expect(err).to.be.null;
           expect(result).to.deep.equal(expectedIds);
         }})
-      .bundle()
-      .pipe(bl((err) => {
+      .bundle((err) => {
         expect(err).to.be.null;
         done();
-      }));
+      });
+  });
+
+  it ('throws error if neither outputFile nor callback is defined', function () {
+    expect(()=>{
+      browserify().plugin(lib);
+    }).to.throw(Error);
   });
 
 

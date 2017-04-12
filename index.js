@@ -28,6 +28,11 @@ function extractIds(opts) {
  * @param  {function} [opts.callback] Callback function with signature <err, result: object>
  */
 function extractIdsPlugin(b, opts) {
+
+  if (!opts || (!opts.outputFile && !opts.callback)) {
+    throw new Error('browserify-extract-ids requires either "outputFile" or "callback" options to be set');
+  }
+
   b.pipeline.get('emit-deps').push(extractIds(opts));
 }
 
