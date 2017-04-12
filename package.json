@@ -1,6 +1,6 @@
 {
   "name": "browserify-extract-ids",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Browserify plugin to extract a bundle's module IDs to a file or callback.",
   "main": "index.js",
   "scripts": {
